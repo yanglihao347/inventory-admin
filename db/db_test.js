@@ -42,7 +42,7 @@ const UserModel = mongoose.model('user',userSchema);  //集合名users
 function testSave() {
     //创建UserModel的实例
     const userModel = new UserModel({
-        username: 'aaabbb',
+        username: 'vbvvvvvxxx',
         password: '123',
         type: 'official'
     });
@@ -53,8 +53,40 @@ function testSave() {
 }
 testSave();
     // 3.2 通过Model的find()/findOne()查询多个或一个数据
+function testSearch() {
+    UserModel.find({
+        username: 'aaabbb',
+    }, (err, doc) => {
+        console.log('find()', err, doc);
+    })
+    // find返回的永远是数组，没有匹配的就是空数组[]
+    // findOne返回的是某个对象，没有匹配的就返回null
+    UserModel.findOne({
+        username: 'aaabbb',
+    }, (err, doc) => {
+        console.log('findOne()', err, doc);
+    })
+}
+// testSearch();
     // 3.3 通过Model的findByIDAndUpdate()更新某个数据
+function testUpdate() {
+    UserModel.findByIdAndUpdate({
+        _id: '5d8cb501bfb801cbc43a2f09',
+    }, {
+        username: 'aaaccc',
+    }, (err, doc) => {
+        console.log('findByIdAndUpdate()', err, doc);
+    })
+}
+// testUpdate();
     // 3.4 通过Model的remove()删除匹配的数据
-
+function testDelete() {
+    UserModel.remove({
+        type: 'official',
+    }, (err, doc) => {
+        console.log('remove()', err, doc);
+    })
+}
+// testDelete();
 
 
