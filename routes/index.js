@@ -85,7 +85,8 @@ router.post('/login', (req, res) => {
         msg: '登录成功',
         data: {
           username,
-          _id: doc._id
+          type: doc.type,
+          _id: doc._id,
         }
       })
     } else {
